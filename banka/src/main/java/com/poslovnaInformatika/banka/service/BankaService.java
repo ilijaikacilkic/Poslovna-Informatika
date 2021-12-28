@@ -13,19 +13,10 @@ public class BankaService {
 	@Autowired
 	private BankaRepository bankaRepository;
 	
-	
-	public Banka saveBanka(Banka banka) {
-        return bankaRepository.save(banka);
-    }
-	
-	 public List<Banka> saveAppointments(List<Banka> banke) {
-	        return bankaRepository.saveAll(banke);
-	    }
-
 	 public List<Banka> getBanke() {
 	        return bankaRepository.findAll();
 	    }
-
+	 
 	 public Banka getBankaById(Long id) {
 	        return bankaRepository.findById(id).orElse(null);
 	    }
@@ -33,4 +24,13 @@ public class BankaService {
 	 public Banka addBanka(Banka banka) {
 			return bankaRepository.save(banka);
 		}
+	 
+	 public List<Banka> saveBanke(List<Banka> banke) {
+	        return bankaRepository.saveAll(banke);
+	    }
+	 
+	 
+	 public void deleteBank(Long id) {
+		 bankaRepository.deleteById(id);
+	 }
 }
