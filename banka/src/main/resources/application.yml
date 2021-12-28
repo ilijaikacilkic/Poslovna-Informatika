@@ -3,8 +3,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver   
     url: jdbc:mysql://localhost:3306/poslovna-informatika
     username: root
-#    password: ilija
-    password: root
+    password: ilija
+ #   password: root
     platform: mysql
   jpa:
     hibernate.ddl-auto: update

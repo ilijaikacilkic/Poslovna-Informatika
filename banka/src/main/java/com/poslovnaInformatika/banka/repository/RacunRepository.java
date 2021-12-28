@@ -2,6 +2,8 @@ package com.poslovnaInformatika.banka.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RacunRepository extends JpaRepository<RacunRepository, Long> {
+import com.poslovnaInformatika.banka.entity.Racun;
+
+public interface RacunRepository extends JpaRepository<Racun, Long> {
 
 }
