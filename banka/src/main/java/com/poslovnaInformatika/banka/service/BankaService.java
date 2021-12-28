@@ -1,4 +1,4 @@
-package service;
+package com.poslovnaInformatika.banka.service;
 
 import java.util.List;
 
