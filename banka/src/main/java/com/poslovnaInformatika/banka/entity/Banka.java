@@ -4,24 +4,39 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Table(name = "banka")
+@Getter
+@Setter
 public class Banka {
 	
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(name = "sifraBanke")
 	private int sifraBanke;
+	@Column(name = "nazivBanke")
 	private String nazivBanke;
+	@Column(name = "adresa")
 	private String adresa;
+	@Column(name = "telefon")
 	private String telefon;
+	@Column(name = "fax")
 	private String fax;
+	@Column(name = "swiftKod")
 	private String swiftKod;
 	
 	@OneToMany(mappedBy = "banka", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -32,84 +47,7 @@ public class Banka {
 	}
 
 
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
-	public int getSifraBanke() {
-		return sifraBanke;
-	}
-
-
-	public void setSifraBanke(int sifraBanke) {
-		this.sifraBanke = sifraBanke;
-	}
-
-
-	public String getNazivBanke() {
-		return nazivBanke;
-	}
-
-
-	public void setNazivBanke(String nazivBanke) {
-		this.nazivBanke = nazivBanke;
-	}
-
-
-	public String getAdresa() {
-		return adresa;
-	}
-
-
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
-	}
-
-
-	public String getTelefon() {
-		return telefon;
-	}
-
-
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
-	}
-
-
-	public String getFax() {
-		return fax;
-	}
-
-
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
-
-
-	public String getSwiftKod() {
-		return swiftKod;
-	}
-
-
-	public void setSwiftKod(String swiftKod) {
-		this.swiftKod = swiftKod;
-	}
-
-
-	public Set<Racun> getRacuni() {
-		return racuni;
-	}
-
-
-	public void setRacuni(Set<Racun> racuni) {
-		this.racuni = racuni;
-	}
+	
 	
 	
 
