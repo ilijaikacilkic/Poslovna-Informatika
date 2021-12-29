@@ -3,22 +3,35 @@ package com.poslovnaInformatika.banka.entity;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Table(name = "racun")
+@Getter
+@Setter
 public class Racun {
 
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(name = "brojRacuna")
 	private String brojRacuna;
+	@Column(name = "stanjeRacuna")
 	private double stanjeRacuna;
+	@Column(name = "rezevisanIznos")
 	private double rezevisanIznos;
+	@Column(name = "datumKreiranja")
 	private Date datumKreiranja;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -28,64 +41,7 @@ public class Racun {
 	
 	public Racun() {
 		super();
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getBrojRacuna() {
-		return brojRacuna;
-	}
-
-	public void setBrojRacuna(String brojRacuna) {
-		this.brojRacuna = brojRacuna;
-	}
-
-	public double getStanjeRacuna() {
-		return stanjeRacuna;
-	}
-
-	public void setStanjeRacuna(double stanjeRacuna) {
-		this.stanjeRacuna = stanjeRacuna;
-	}
-
-	public double getRezevisanIznos() {
-		return rezevisanIznos;
-	}
-
-	public void setRezevisanIznos(double rezevisanIznos) {
-		this.rezevisanIznos = rezevisanIznos;
-	}
-
-	public Date getDatumKreiranja() {
-		return datumKreiranja;
-	}
-
-	public void setDatumKreiranja(Date datumKreiranja) {
-		this.datumKreiranja = datumKreiranja;
-	}
-
-	public Banka getBanka() {
-		return banka;
-	}
-
-	public void setBanka(Banka banka) {
-		this.banka = banka;
-	}
-
-	public Klijent getKlijent() {
-		return klijent;
-	}
-
-	public void setKlijent(Klijent klijent) {
-		this.klijent = klijent;
-	}
-	
+	}	
 	
 	
 }

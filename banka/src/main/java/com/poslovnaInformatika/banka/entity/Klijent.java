@@ -4,27 +4,45 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Table(name = "klijent")
+@Getter
+@Setter
 public class Klijent {
 
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(name = "naziv")
 	private String naziv;
+	@Column(name = "ime")
 	private String ime;
+	@Column(name = "prezime")
 	private String prezime;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "adresa")
 	private String adresa;
+	@Column(name = "telefon")
 	private String telefon;
+	@Column(name = "jmbg")
 	private String jmbg;
+	@Column(name = "pib")
 	private String pib;
+	@Column(name = "fizickoLice")
 	private boolean fizickoLice;
 	
 	@OneToMany(mappedBy = "klijent", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -34,93 +52,6 @@ public class Klijent {
 		super();
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNaziv() {
-		return naziv;
-	}
-
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
-
-	public String getIme() {
-		return ime;
-	}
-
-	public void setIme(String ime) {
-		this.ime = ime;
-	}
-
-	public String getPrezime() {
-		return prezime;
-	}
-
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAdresa() {
-		return adresa;
-	}
-
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
-	}
-
-	public String getTelefon() {
-		return telefon;
-	}
-
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
-	}
-
-	public String getJmbg() {
-		return jmbg;
-	}
-
-	public void setJmbg(String jmbg) {
-		this.jmbg = jmbg;
-	}
-
-	public String getPib() {
-		return pib;
-	}
-
-	public void setPib(String pib) {
-		this.pib = pib;
-	}
-
-	public boolean isFizickoLice() {
-		return fizickoLice;
-	}
-
-	public void setFizickoLice(boolean fizickoLice) {
-		this.fizickoLice = fizickoLice;
-	}
-
-	public Set<Racun> getRacuni() {
-		return racuni;
-	}
-
-	public void setRacuni(Set<Racun> racuni) {
-		this.racuni = racuni;
-	}
 	
 	
 	
