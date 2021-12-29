@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.repository.BankaRepository;
 
@@ -30,7 +31,11 @@ public class BankaService {
 	    }
 	 
 	 
-	 public void deleteBank(Long id) {
+	 public void deleteBanka(long id) {
 		 bankaRepository.deleteById(id);
 	 }
+	 
+	 public Banka saveBanka(Banka banka) {
+	        return bankaRepository.save(banka);
+	    }
 }
