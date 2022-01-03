@@ -3,6 +3,8 @@ package com.poslovnaInformatika.banka.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.poslovnaInformatika.banka.entity.Klijent;
+
 import lombok.Data;
 
 @Data
@@ -23,5 +25,17 @@ public class KlijentDTO {
 	
 	public KlijentDTO() {}
 
-	
+	public KlijentDTO(Klijent obj) {
+		super();
+		this.id = obj.getId();
+		this.naziv = obj.getNaziv();
+		this.ime = obj.getIme();
+		this.prezime = obj.getPrezime();
+		this.email = obj.getEmail();
+		this.adresa = obj.getAdresa();
+		this.telefon = obj.getTelefon();
+		this.jmbg = obj.getJmbg();
+		this.pib = obj.getPib();
+		this.fizickoLice = obj.isFizickoLice();
+	}
 }

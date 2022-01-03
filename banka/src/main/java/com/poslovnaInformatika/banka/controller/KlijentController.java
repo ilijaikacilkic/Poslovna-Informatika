@@ -39,25 +39,25 @@ public class KlijentController {
 		return new ResponseEntity<Klijent>(k, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/addKlijent",method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Klijent> addKlijent(@RequestBody Klijent k){
-		Klijent klijent = new Klijent();
-		
-		klijent.setNaziv(k.getNaziv());
-		klijent.setIme(k.getIme());
-		klijent.setPrezime(k.getPrezime());
-		klijent.setEmail(k.getEmail());
-		klijent.setAdresa(k.getAdresa());
-		klijent.setTelefon(k.getTelefon());
-		klijent.setJmbg(k.getJmbg());
-		klijent.setPib(k.getPib());
-		klijent.setFizickoLice(k.isFizickoLice());
-		
-		klijentService.saveKlijent(klijent);
-		
-		return new ResponseEntity<Klijent>(klijent, HttpStatus.CREATED);
-		
-	}
-	
+//	@RequestMapping(value = "/addKlijent",method = RequestMethod.POST, consumes = "application/json")
+//	public ResponseEntity<Klijent> addKlijent(@RequestBody Klijent k){
+//		Klijent klijent = new Klijent();
+//		
+//		klijent.setNaziv(k.getNaziv());
+//		klijent.setIme(k.getIme());
+//		klijent.setPrezime(k.getPrezime());
+//		klijent.setEmail(k.getEmail());
+//		klijent.setAdresa(k.getAdresa());
+//		klijent.setTelefon(k.getTelefon());
+//		klijent.setJmbg(k.getJmbg());
+//		klijent.setPib(k.getPib());
+//		klijent.setFizickoLice(k.isFizickoLice());
+//		
+//		klijentService.saveKlijent(klijent);
+//		
+//		return new ResponseEntity<Klijent>(klijent, HttpStatus.CREATED);
+//		
+//	}
+//	
 	
 }

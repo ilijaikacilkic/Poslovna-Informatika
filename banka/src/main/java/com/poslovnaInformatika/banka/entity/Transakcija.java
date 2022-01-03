@@ -33,15 +33,13 @@ public class Transakcija {
 	private double iznos;
 	@Column(name = "sifraPlacanja")
 	private String sifraPlacanja;
-	@OneToOne
-	@Column(name = "racunDuznika")
+	@OneToOne	
 	private Racun racunDuznika;
 	@Column(name = "modelDuznika")
 	private String modelDuznika;
 	@Column(name = "pozivNaBrojDuznika")
 	private String pozivNaBrojDuznika;
-	@OneToOne
-	@Column(name = "racunPrimaoca")
+	@OneToOne	
 	private Racun racunPrimaoca;
 	@Column(name = "modelPrimaoca")
 	private String modelPrimaoca;
