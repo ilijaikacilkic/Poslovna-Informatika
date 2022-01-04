@@ -2,11 +2,15 @@ package com.poslovnaInformatika.banka.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.poslovnaInformatika.banka.entity.Banka;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 
 
-
+@Getter
+@Setter
 public class BankaDTO {
 
 	private long id;

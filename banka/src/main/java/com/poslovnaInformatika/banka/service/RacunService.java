@@ -2,17 +2,19 @@ package com.poslovnaInformatika.banka.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poslovnaInformatika.banka.entity.Racun;
 import com.poslovnaInformatika.banka.repository.RacunRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class RacunService {
 	
-	@Autowired
-	RacunRepository racunRepository;
+	
+	private final RacunRepository racunRepository;
 	
 	public Racun getRacun(long id) {
 		return racunRepository.findById(id).orElse(null);

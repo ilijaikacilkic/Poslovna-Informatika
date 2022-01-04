@@ -5,9 +5,11 @@ import java.util.List;
 
 import com.poslovnaInformatika.banka.entity.Klijent;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class KlijentDTO {
 	
 	private long id;

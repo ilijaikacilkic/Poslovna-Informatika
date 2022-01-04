@@ -2,23 +2,23 @@ package com.poslovnaInformatika.banka.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poslovnaInformatika.banka.entity.Klijent;
 import com.poslovnaInformatika.banka.service.KlijentService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class KlijentController {
 
-	@Autowired
-	KlijentService klijentService;
+	
+	private final KlijentService klijentService;
 	
 	@RequestMapping(value = "/klijenti")
 	public ResponseEntity<List<Klijent>> getAll(){

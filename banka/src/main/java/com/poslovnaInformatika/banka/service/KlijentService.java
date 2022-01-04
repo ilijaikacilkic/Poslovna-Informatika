@@ -2,17 +2,19 @@ package com.poslovnaInformatika.banka.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poslovnaInformatika.banka.entity.Klijent;
 import com.poslovnaInformatika.banka.repository.KlijentRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class KlijentService {
 	
-	@Autowired
-	KlijentRepository klijentRepository;
+	
+	private final KlijentRepository klijentRepository;
 	
 	public Klijent getKlijent(long id) {
 		return klijentRepository.findById(id).orElse(null);

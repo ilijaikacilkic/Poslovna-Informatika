@@ -2,6 +2,11 @@ package com.poslovnaInformatika.banka.dto;
 
 import com.poslovnaInformatika.banka.entity.Delatnost;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class DelatnostDTO {
 	
 	private long id;

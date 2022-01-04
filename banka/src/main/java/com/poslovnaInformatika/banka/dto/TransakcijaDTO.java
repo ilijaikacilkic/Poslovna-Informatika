@@ -2,16 +2,14 @@ package com.poslovnaInformatika.banka.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.entity.Racun;
 import com.poslovnaInformatika.banka.entity.Transakcija;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class TransakcijaDTO {
 	
 	

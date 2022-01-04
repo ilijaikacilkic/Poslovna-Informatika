@@ -4,9 +4,11 @@ import java.util.Date;
 
 import com.poslovnaInformatika.banka.entity.Racun;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class RacunDTO {
 
 	private long id;
