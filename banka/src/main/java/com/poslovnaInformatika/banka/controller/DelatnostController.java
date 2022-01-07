@@ -4,18 +4,14 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poslovnaInformatika.banka.dto.DelatnostDTO;
-import com.poslovnaInformatika.banka.dto.ValutaDTO;
 import com.poslovnaInformatika.banka.entity.Delatnost;
-import com.poslovnaInformatika.banka.entity.Valuta;
 import com.poslovnaInformatika.banka.service.DelatnostService;
 
 import lombok.RequiredArgsConstructor;
@@ -44,7 +40,8 @@ public class DelatnostController {
 		
 		return new ResponseEntity<Delatnost>(delatnost, HttpStatus.OK);
 	}
-
+	
+	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", value = "/addDelatnost")
 	public ResponseEntity<?> save(@RequestBody DelatnostDTO dto) {
 		if (dto.getSifra() == null)
@@ -59,9 +56,27 @@ public class DelatnostController {
 	}
 
 
-	@GetMapping("/delatnostById/{id}")
-	public Delatnost findDelatnostById(@PathVariable long id) {
-		return delatnostService.getDelatnostById(id);
+	
+	@RequestMapping(method=RequestMethod.PUT, consumes="application/json", value = "/updateDelatnost/{id}")
+	public ResponseEntity<?> update(@RequestBody DelatnostDTO dto){
+		Delatnost delatnost = delatnostService.getDelatnostById(dto.getId());
+		if(delatnost == null)
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		delatnost.setNaziv(dto.getNaziv());
+		
+		delatnostService.saveDelatnost(delatnost);
+		return new ResponseEntity<>(new DelatnostDTO(delatnost), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/deleteDelatnost/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<?> delete(@PathVariable Long id){
+		
+		Delatnost delatnost = delatnostService.getDelatnostById(id);
+		if (delatnost != null){
+			delatnostService.deleteDelatnost(id);
+
+			}
+			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 	}
 
 }

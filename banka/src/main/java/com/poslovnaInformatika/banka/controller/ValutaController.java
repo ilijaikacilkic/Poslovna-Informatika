@@ -54,6 +54,19 @@ public class ValutaController {
 		return new ResponseEntity<>(new ValutaDTO(valuta), HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json", value = "/updateValuta/{id}")
+	public ResponseEntity<?> update(@RequestBody ValutaDTO dto) {
+		Valuta valuta = valutaService.getValutaById(dto.getId());
+		if (valuta == null)
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		valuta.setNaziv(dto.getNaziv());
+		valuta.setSkraceniNaziv(dto.getSkraceniNaziv());
+		valuta.setDrzava(dto.getDrzava());
+
+		valutaService.saveValuta(valuta);
+		return new ResponseEntity<>(new ValutaDTO(valuta), HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/deleteValuta/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 
