@@ -2,8 +2,10 @@ package com.poslovnaInformatika.banka.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.poslovnaInformatika.banka.entity.Klijent;
+import com.poslovnaInformatika.banka.entity.Racun;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,5 +41,12 @@ public class KlijentDTO {
 		this.jmbg = obj.getJmbg();
 		this.pib = obj.getPib();
 		this.fizickoLice = obj.isFizickoLice();
+	}
+	
+	public void setRacuniListFromSet(Set<Racun> racuni) {
+		List<Racun> listaRacuna = new ArrayList<Racun>(racuni);
+		for(Racun obj : listaRacuna) {
+			this.racuni.add(new RacunDTO(obj));
+		}
 	}
 }

@@ -1,10 +1,14 @@
 package com.poslovnaInformatika.banka.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -27,6 +31,9 @@ public class Valuta {
 	@Column(name = "drzava")
 	private String drzava;	
 	
+	
+	@OneToMany(mappedBy = "valuta")
+	private Set<Racun> racuni = new HashSet<Racun>();
 	
 	public Valuta() {
 		super();

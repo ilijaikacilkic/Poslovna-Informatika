@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -44,8 +45,11 @@ public class Klijent {
 	@Column(name = "fizickoLice")
 	private boolean fizickoLice;
 	
-	@OneToMany(mappedBy = "klijent", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "klijent")
 	private Set<Racun> racuni = new HashSet<Racun>();
+	
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	private Delatnost delatnost;
 	
 	public Klijent() {
 		super();

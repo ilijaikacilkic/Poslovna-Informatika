@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poslovnaInformatika.banka.dto.BankaDTO;
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.service.BankaService;
 
@@ -24,14 +25,16 @@ public class BankaController {
 	private final BankaService bankaService;
 
 	@RequestMapping(value = "/banke")
-	public ResponseEntity<List<Banka>> getAll(){
+	public ResponseEntity<List<BankaDTO>> getAll(){
 		List<Banka> banke = bankaService.getBanke();
 		
-		return new ResponseEntity<List<Banka>>(banke, HttpStatus.OK);
+		List<BankaDTO> bankeDTO = bankaService.getAllBankeDTO(banke);
+		
+		return new ResponseEntity<List<BankaDTO>>(bankeDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/banka/{id}")
-	public ResponseEntity<Banka> getOne(@PathVariable Long id){
+	public ResponseEntity<BankaDTO> getOne(@PathVariable Long id){
 		
 		Banka banka = bankaService.getBankaById(id);
 		
@@ -39,12 +42,24 @@ public class BankaController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Banka>(banka, HttpStatus.OK);
+		BankaDTO bankaDTO = bankaService.getBankaDTO(banka);
+		
+		return new ResponseEntity<BankaDTO>(bankaDTO, HttpStatus.OK);
 	}
 
 	@PostMapping("/addBanka")
-	public Banka addBanka(@RequestBody Banka banka) {
-		return bankaService.saveBanka(banka);
+	public ResponseEntity<BankaDTO> addBanka(@RequestBody BankaDTO bankaDTO) {
+		Banka banka = new Banka();
+		
+		banka.setSifraBanke(bankaDTO.getSifraBanke());
+		banka.setAdresa(bankaDTO.getAdresa());
+		banka.setTelefon(bankaDTO.getTelefon());
+		banka.setFax(bankaDTO.getFax());
+		banka.setSwiftKod(bankaDTO.getSwiftKod());
+		
+		bankaService.saveBanka(banka);
+		
+		return new ResponseEntity<BankaDTO>(bankaDTO, HttpStatus.CREATED);
 	}
 
 

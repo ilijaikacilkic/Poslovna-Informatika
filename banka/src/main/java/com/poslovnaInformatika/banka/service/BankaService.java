@@ -1,18 +1,21 @@
 package com.poslovnaInformatika.banka.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.poslovnaInformatika.banka.dto.BankaDTO;
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.repository.BankaRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class BankaService {
 
-	@Autowired
-	private BankaRepository bankaRepository;
+	private final BankaRepository bankaRepository;
 	
 	 public List<Banka> getBanke() {
 	        return bankaRepository.findAll();
@@ -38,4 +41,20 @@ public class BankaService {
 	 public Banka saveBanka(Banka banka) {
 	        return bankaRepository.save(banka);
 	    }
+	 
+		//prebacivanje Banke u DTO klasu
+		public BankaDTO getBankaDTO(Banka banka) {
+			BankaDTO bankaDTO = new BankaDTO(banka);
+			return bankaDTO;
+		}
+		
+		//prebacivanje Liste banaka u listu DTO banaka
+		public List<BankaDTO> getAllBankeDTO(List<Banka> banke){
+			List<BankaDTO> bankeDTO = new ArrayList<BankaDTO>();
+			for(Banka banka : banke) {
+				BankaDTO bankaDTO = new BankaDTO(banka);
+				bankeDTO.add(bankaDTO);
+			}
+			return bankeDTO;
+		}
 }

@@ -39,7 +39,7 @@ public class Banka {
 	@Column(name = "swiftKod")
 	private String swiftKod;
 	
-	@OneToMany(mappedBy = "banka", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "banka")
 	private Set<Racun> racuni = new HashSet<Racun>();
 	
 	public Banka() {
