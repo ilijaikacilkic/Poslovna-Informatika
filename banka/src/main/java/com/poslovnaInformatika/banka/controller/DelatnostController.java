@@ -28,20 +28,19 @@ public class DelatnostController {
 
 		return new ResponseEntity<List<Delatnost>>(delatnosti, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/delatnost/{id}")
-	public ResponseEntity<Delatnost> getOne(@PathVariable Long id){
-		
+	public ResponseEntity<Delatnost> getOne(@PathVariable Long id) {
+
 		Delatnost delatnost = delatnostService.getDelatnostById(id);
-		
-		if(delatnost == null) {
+
+		if (delatnost == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
-		
+
 		return new ResponseEntity<Delatnost>(delatnost, HttpStatus.OK);
 	}
-	
-	
+
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", value = "/addDelatnost")
 	public ResponseEntity<?> save(@RequestBody DelatnostDTO dto) {
 		if (dto.getSifra() == null)
@@ -50,33 +49,35 @@ public class DelatnostController {
 		Delatnost delatnost = new Delatnost();
 		delatnost.setSifra(dto.getSifra());
 		delatnost.setNaziv(dto.getNaziv());
-		
+
 		delatnostService.saveDelatnost(delatnost);
 		return new ResponseEntity<>(new DelatnostDTO(delatnost), HttpStatus.OK);
 	}
 
-
-	
-	@RequestMapping(method=RequestMethod.PUT, consumes="application/json", value = "/updateDelatnost/{id}")
-	public ResponseEntity<?> update(@RequestBody DelatnostDTO dto){
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json", value = "/updateDelatnost/{id}")
+	public ResponseEntity<?> update(@RequestBody DelatnostDTO dto) {
 		Delatnost delatnost = delatnostService.getDelatnostById(dto.getId());
-		if(delatnost == null)
+		if (delatnost == null)
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		delatnost.setNaziv(dto.getNaziv());
-		
+
 		delatnostService.saveDelatnost(delatnost);
 		return new ResponseEntity<>(new DelatnostDTO(delatnost), HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/deleteDelatnost/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<?> delete(@PathVariable Long id){
-		
-		Delatnost delatnost = delatnostService.getDelatnostById(id);
-		if (delatnost != null){
-			delatnostService.deleteDelatnost(id);
 
-			}
-			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+	@RequestMapping(value = "/deleteDelatnost/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+
+		Delatnost delatnost = delatnostService.getDelatnostById(id);
+		if (delatnost != null) {
+			delatnostService.deleteDelatnost(id);
+			List<Delatnost> delatnosti = delatnostService.getDelatnosti();
+			List<DelatnostDTO> dtos = delatnostService.getAllDTOs(delatnosti);
+
+			return new ResponseEntity<>(dtos, HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
 	}
 
 }

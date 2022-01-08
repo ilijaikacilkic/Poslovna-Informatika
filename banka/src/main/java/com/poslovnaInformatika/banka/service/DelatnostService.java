@@ -1,6 +1,9 @@
 package com.poslovnaInformatika.banka.service;
+
 import java.util.List;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import com.poslovnaInformatika.banka.dto.DelatnostDTO;
 import com.poslovnaInformatika.banka.entity.Delatnost;
 import com.poslovnaInformatika.banka.repository.DelatnostRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,15 +34,21 @@ public class DelatnostService {
 		return delatnostRepository.save(delatnost);
 	}
 
-//	public List<DelatnostDTO> getAllDTOs(List<Delatnost> delatnosti) {
-//
-//		List<DelatnostDTO> dtos = new ArrayList<>();
-//		for (Delatnost delatnost : delatnosti) {
-//			DelatnostDTO dto = new DelatnostDTO(delatnost);
-//			dto.setKlijentiListFromSet(delatnost.getKlijenti());
-//			dtos.add(dto);
-//		}
-//		return dtos;
-//	}
+	public List<DelatnostDTO> getAllDTOs(List<Delatnost> delatnosti) {
+
+		List<DelatnostDTO> dtos = new ArrayList<>();
+		for (Delatnost delatnost : delatnosti) {
+			DelatnostDTO dto = new DelatnostDTO(delatnost);
+			dto.setKlijentiListFromSet(delatnost.getKlijenti());
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+
+	public DelatnostDTO getDelatnostDTO(Delatnost delatnost) {
+		DelatnostDTO dto = new DelatnostDTO(delatnost);
+		dto.setKlijentiListFromSet(delatnost.getKlijenti());
+		return dto;
+	}
 
 }

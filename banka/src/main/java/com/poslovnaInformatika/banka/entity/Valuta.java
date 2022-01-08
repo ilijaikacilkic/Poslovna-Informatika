@@ -35,6 +35,10 @@ public class Valuta {
 	@OneToMany(mappedBy = "valuta")
 	private Set<Racun> racuni = new HashSet<Racun>();
 	
+	@OneToMany(mappedBy = "valuta")
+	private Set<Transakcija> transakcije = new HashSet<Transakcija>();
+	
+	
 	public Valuta() {
 		super();
 	}

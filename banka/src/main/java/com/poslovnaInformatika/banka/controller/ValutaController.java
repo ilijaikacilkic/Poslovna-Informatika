@@ -73,10 +73,13 @@ public class ValutaController {
 		Valuta valuta = valutaService.getValutaById(id);
 		if (valuta != null) {
 			valutaService.deleteValuta(id);
+			List<Valuta> valute = valutaService.getValute();
+			List<ValutaDTO> dtos = valutaService.getAllDTOs(valute);
 
-		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-
+			return new ResponseEntity<>(dtos, HttpStatus.OK);
+		} else		
+			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+		
 	}
 
 }

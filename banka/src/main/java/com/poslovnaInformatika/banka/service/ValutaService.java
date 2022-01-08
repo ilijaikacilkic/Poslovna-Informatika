@@ -1,9 +1,11 @@
 package com.poslovnaInformatika.banka.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.poslovnaInformatika.banka.dto.ValutaDTO;
 import com.poslovnaInformatika.banka.entity.Valuta;
 import com.poslovnaInformatika.banka.repository.ValutaRepository;
 
@@ -36,6 +38,25 @@ public class ValutaService {
 	public Valuta saveValuta(Valuta valuta) {
 		return valutaRepository.save(valuta);
 	}
+	
+	public List<ValutaDTO> getAllDTOs(List<Valuta> valute) {
+		List<ValutaDTO> dtos = new ArrayList<>();
+		for (Valuta valuta : valute) {
+			ValutaDTO dto = new ValutaDTO(valuta);
+			dto.setRacuniListFromSet(valuta.getRacuni());		
+			dto.setTransakcijeListFromSet(valuta.getTransakcije());
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+	
+	public ValutaDTO getValutaDTO(Valuta valuta) {
+		ValutaDTO dto = new ValutaDTO(valuta);
+		dto.setRacuniListFromSet(valuta.getRacuni());		
+		dto.setTransakcijeListFromSet(valuta.getTransakcije());
+		return dto;
+	}
+
 	
 
 
