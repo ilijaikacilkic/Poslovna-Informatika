@@ -24,12 +24,13 @@ public class BankaController {
 	
 	private final BankaService bankaService;
 
+
 	@RequestMapping(value = "/banke")
 	public ResponseEntity<List<BankaDTO>> getAll(){
 		List<Banka> banke = bankaService.getBanke();
 		
 		List<BankaDTO> bankeDTO = bankaService.getAllBankeDTO(banke);
-		
+	
 		return new ResponseEntity<List<BankaDTO>>(bankeDTO, HttpStatus.OK);
 	}
 	

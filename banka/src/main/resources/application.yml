@@ -7,7 +7,7 @@ spring:
     password: root
     platform: mysql
   jpa:
-    hibernate.ddl-auto: create-drop
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
    
