@@ -4,8 +4,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 import org.springframework.stereotype.Service;
 
+import com.poslovnaInformatika.banka.dto.BankaDTO;
+import com.poslovnaInformatika.banka.dto.KlijentDTO;
+import com.poslovnaInformatika.banka.dto.RacunDTO;
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.entity.Klijent;
 import com.poslovnaInformatika.banka.entity.Racun;
@@ -19,6 +23,8 @@ public class RacunService {
 	
 	
 	private final RacunRepository racunRepository;
+	private final KlijentService klijentService;
+	private final BankaService bankaService;
 	
 	public Racun getRacun(long id) {
 		return racunRepository.findById(id).orElse(null);
@@ -74,5 +80,44 @@ public class RacunService {
 		
 	}
 	
+	
+	//prebacivanje Racuna u DTO klasu
+	public RacunDTO getRacunDTO(Racun racun) {
+		RacunDTO racunDTO = new RacunDTO(racun);
+		return racunDTO;
+	}
+	
+	//provera da li klijent ima racun
+	public RacunDTO getKlijentRacun(Klijent klijent, Racun racun) {
+		
+		KlijentDTO klijentDTO = klijentService.getKlinetDTO(klijent);
+		RacunDTO racunDTO = this.getRacunDTO(racun);
+		
+		List<RacunDTO> racuniDTO = klijentDTO.getRacuni();
+		
+		for (RacunDTO racunProvera : racuniDTO) {
+			
+			if(racunProvera.getBrojRacuna().equals(racunDTO.getBrojRacuna())) {
+				return racunDTO;
+			}
+		}
+		return null;
+	}
 
+	//provera da li banka ima racun
+	public RacunDTO getBankaRacun(Banka banka, Racun racun) {
+		
+		BankaDTO bankaDTO = bankaService.getBankaDTO(banka);
+		RacunDTO racunDTO = this.getRacunDTO(racun);
+		
+		List<RacunDTO> racuniDTO = bankaDTO.getRacuni();
+		
+		for (RacunDTO racunProvera : racuniDTO) {
+			
+			if(racunProvera.getBrojRacuna().equals(racunDTO.getBrojRacuna())) {
+				return racunDTO;
+			}
+		}
+		return null;
+	}
 }

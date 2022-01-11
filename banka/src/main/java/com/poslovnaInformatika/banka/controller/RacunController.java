@@ -42,4 +42,10 @@ public class RacunController {
 		
 	}
 	
+	@RequestMapping(value = "/deleteRacun/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteRacun(@PathVariable Long id){
+		racunService.deleteRacun(id);
+		return new ResponseEntity<>("obrisan racun", HttpStatus.OK);
+	}
+	
 }
