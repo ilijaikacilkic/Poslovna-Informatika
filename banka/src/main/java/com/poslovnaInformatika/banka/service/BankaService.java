@@ -53,6 +53,7 @@ public class BankaService {
 			List<BankaDTO> bankeDTO = new ArrayList<BankaDTO>();
 			for(Banka banka : banke) {
 				BankaDTO bankaDTO = new BankaDTO(banka);
+				bankaDTO.setRacuniListFromSet(banka.getRacuni());
 				bankeDTO.add(bankaDTO);
 			}
 			return bankeDTO;
