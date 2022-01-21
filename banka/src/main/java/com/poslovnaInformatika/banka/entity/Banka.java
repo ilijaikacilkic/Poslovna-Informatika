@@ -41,6 +41,8 @@ public class Banka {
 	
 	@OneToMany(mappedBy = "banka")
 	private Set<Racun> racuni = new HashSet<Racun>();
+	@OneToMany(mappedBy = "banka")
+	private Set<Poruka> poruke = new HashSet<Poruka>();
 	
 	public Banka() {
 		super();

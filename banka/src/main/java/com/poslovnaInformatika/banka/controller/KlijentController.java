@@ -71,7 +71,7 @@ public class KlijentController {
 		
 	}
 	
-	@RequestMapping(value = "/deleteKlijent/{id}", method = RequestMethod.DELETE, consumes = "application/json")
+	@RequestMapping(value = "/deleteKlijent/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteKlijenta(@PathVariable Long id){
 		klijentService.deleteKlijent(id);
 		
