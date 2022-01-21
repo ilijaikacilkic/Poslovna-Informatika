@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.entity.Klijent;
+import com.poslovnaInformatika.banka.entity.Valuta;
 import com.poslovnaInformatika.banka.service.BankaService;
 import com.poslovnaInformatika.banka.service.KlijentService;
 import com.poslovnaInformatika.banka.service.RacunService;
+import com.poslovnaInformatika.banka.service.ValutaService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,18 +26,20 @@ public class RacunController {
 	public final RacunService racunService;
 	public final KlijentService klijentService;
 	public final BankaService bankaService;
+	public final ValutaService valutaService;
 	
 	
 	
-	@RequestMapping(value = "/addRacun/{idBanke}/{idKlijenta}", method =RequestMethod.POST)
-	public ResponseEntity<?> addRacun(@PathVariable long idBanke, @PathVariable long idKlijenta){
+	@RequestMapping(value = "/addRacun/{idBanke}/{idKlijenta}/{idValuta}", method =RequestMethod.POST)
+	public ResponseEntity<?> addRacun(@PathVariable long idBanke, @PathVariable long idKlijenta, @PathVariable long idValuta){
 		
 		Banka b = bankaService.getBankaById(idBanke);
 		Klijent k = klijentService.getKlijent(idKlijenta);
+		Valuta v = valutaService.getValutaById(idValuta);
 		
 
 		
-		racunService.saveRacun(b,k);
+		racunService.saveRacun(b,k,v);
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 		

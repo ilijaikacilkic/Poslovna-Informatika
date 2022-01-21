@@ -13,6 +13,7 @@ import com.poslovnaInformatika.banka.dto.RacunDTO;
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.entity.Klijent;
 import com.poslovnaInformatika.banka.entity.Racun;
+import com.poslovnaInformatika.banka.entity.Valuta;
 import com.poslovnaInformatika.banka.repository.RacunRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class RacunService {
 		return racuni;
 	}
 	
-	public Racun saveRacun(Banka b, Klijent k) {
+	public Racun saveRacun(Banka b, Klijent k, Valuta v) {
 		
 		Racun noviRacun = new Racun();
 		
@@ -48,6 +49,7 @@ public class RacunService {
 		
 		noviRacun.setBanka(b);
 		noviRacun.setKlijent(k);
+		noviRacun.setValuta(v);
 		
 		return racunRepository.save(noviRacun);
 	}
