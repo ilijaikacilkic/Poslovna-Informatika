@@ -49,13 +49,15 @@ public class BankaService {
 		}
 		
 		//prebacivanje Liste banaka u listu DTO banaka
-		public List<BankaDTO> getAllBankeDTO(List<Banka> banke){
-			List<BankaDTO> bankeDTO = new ArrayList<BankaDTO>();
-			for(Banka banka : banke) {
-				BankaDTO bankaDTO = new BankaDTO(banka);
-				bankaDTO.setRacuniListFromSet(banka.getRacuni());
-				bankeDTO.add(bankaDTO);
-			}
-			return bankeDTO;
+	public List<BankaDTO> getAllBankeDTO(List<Banka> banke){
+		List<BankaDTO> bankeDTO = new ArrayList<BankaDTO>();
+	
+		for(Banka banka : banke) {
+			BankaDTO bankaDTO = new BankaDTO(banka);
+			bankeDTO.add(bankaDTO);
+			
 		}
+	
+		return bankeDTO;
+	}
 }

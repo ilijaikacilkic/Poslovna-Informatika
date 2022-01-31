@@ -39,7 +39,6 @@ public class KlijentService {
 	//prebacivanje Klijenta u DTO klasu
 	public KlijentDTO getKlinetDTO(Klijent klijent) {
 		KlijentDTO klijentDTO = new KlijentDTO(klijent);
-		klijentDTO.setRacuniListFromSet(klijent.getRacuni());
 		return klijentDTO;
 	}
 	
@@ -48,7 +47,6 @@ public class KlijentService {
 		List<KlijentDTO> klijentiDTO = new ArrayList<KlijentDTO>();
 		for(Klijent klijent : klijenti) {
 			KlijentDTO klijentDTO = new KlijentDTO(klijent);
-			klijentDTO.setRacuniListFromSet(klijent.getRacuni());
 			klijentiDTO.add(klijentDTO);
 		}
 		return klijentiDTO;

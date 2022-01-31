@@ -1,5 +1,6 @@
 package com.poslovnaInformatika.banka.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -7,8 +8,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Service;
 
-import com.poslovnaInformatika.banka.dto.BankaDTO;
-import com.poslovnaInformatika.banka.dto.KlijentDTO;
 import com.poslovnaInformatika.banka.dto.RacunDTO;
 import com.poslovnaInformatika.banka.entity.Banka;
 import com.poslovnaInformatika.banka.entity.Klijent;
@@ -24,8 +23,7 @@ public class RacunService {
 	
 	
 	private final RacunRepository racunRepository;
-	private final KlijentService klijentService;
-	private final BankaService bankaService;
+
 	
 	public Racun getRacun(long id) {
 		return racunRepository.findById(id).orElse(null);
@@ -46,6 +44,8 @@ public class RacunService {
 		noviRacun.setStanjeRacuna(0);
 		noviRacun.setRezevisanIznos(0);
 		noviRacun.setDatumKreiranja(new Date());
+		noviRacun.setAktivan(false);
+		noviRacun.setOdobren(false);
 		
 		noviRacun.setBanka(b);
 		noviRacun.setKlijent(k);
@@ -61,6 +61,19 @@ public class RacunService {
 	public Racun getByBrojRacuna(String brojRacuna) {
         return racunRepository.findBybrojRacuna(brojRacuna);
     }
+	
+	public List<Racun> getAllKlijentRacuniAktivni(Long idKlijenta, boolean aktivan, boolean odobren){
+		
+		List<Racun> aktivniRacuniKlijenta = racunRepository.getByKlijentIdAndAktivanAndOdobren(idKlijenta, aktivan,odobren);
+		
+		return aktivniRacuniKlijenta;
+	}
+	public List<Racun> getAllBankaRacuniAktivni(Long idBanka, boolean aktivan, boolean odobren){
+		
+		List<Racun> aktivniRacuniKlijenta = racunRepository.getByBankaIdAndAktivanAndOdobren(idBanka, aktivan, odobren);
+		
+		return aktivniRacuniKlijenta;
+	}
 	
 	//funkcija za kreiranje broja racuna
 	public String generateBrojRacuna(Banka b) {
@@ -89,37 +102,22 @@ public class RacunService {
 		return racunDTO;
 	}
 	
-	//provera da li klijent ima racun
-	public RacunDTO getKlijentRacun(Klijent klijent, Racun racun) {
+	//prebacivanje liste racuna klijenta-banke u racuneDTO
+	public List<RacunDTO> getRacuneDTOKlijentBanka(List<Racun> racuni) {
 		
-		KlijentDTO klijentDTO = klijentService.getKlinetDTO(klijent);
-		RacunDTO racunDTO = this.getRacunDTO(racun);
-		
-		List<RacunDTO> racuniDTO = klijentDTO.getRacuni();
-		
-		for (RacunDTO racunProvera : racuniDTO) {
-			
-			if(racunProvera.getBrojRacuna().equals(racunDTO.getBrojRacuna())) {
-				return racunDTO;
-			}
+		if(racuni == null) {
+			return null;
 		}
-		return null;
+		
+		List<RacunDTO> racuniDTO = new ArrayList<RacunDTO>();
+		
+		for (Racun racun : racuni) {
+			RacunDTO racunDTO = new RacunDTO(racun);
+			racuniDTO.add(racunDTO);
+		}
+		
+		return racuniDTO;
+		
 	}
 
-	//provera da li banka ima racun
-	public RacunDTO getBankaRacun(Banka banka, Racun racun) {
-		
-		BankaDTO bankaDTO = bankaService.getBankaDTO(banka);
-		RacunDTO racunDTO = this.getRacunDTO(racun);
-		
-		List<RacunDTO> racuniDTO = bankaDTO.getRacuni();
-		
-		for (RacunDTO racunProvera : racuniDTO) {
-			
-			if(racunProvera.getBrojRacuna().equals(racunDTO.getBrojRacuna())) {
-				return racunDTO;
-			}
-		}
-		return null;
-	}
 }

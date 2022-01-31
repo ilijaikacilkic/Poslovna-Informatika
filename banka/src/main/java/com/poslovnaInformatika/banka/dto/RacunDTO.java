@@ -16,6 +16,8 @@ public class RacunDTO {
 	private double stanjeRacuna;
 	private double rezevisanIznos;
 	private Date datumKreiranja;
+	private Boolean odobren;
+	private Boolean aktivan;
 
 	private BankaDTO banka;
 
@@ -31,6 +33,8 @@ public class RacunDTO {
 		this.stanjeRacuna = obj.getStanjeRacuna();
 		this.rezevisanIznos = obj.getRezevisanIznos();
 		this.datumKreiranja = obj.getDatumKreiranja();
+		this.odobren = obj.getOdobren();
+		this.aktivan = obj.getAktivan();
 		if (obj.getBanka() != null)
 			this.banka = new BankaDTO(obj.getBanka());
 		if (obj.getKlijent() != null)

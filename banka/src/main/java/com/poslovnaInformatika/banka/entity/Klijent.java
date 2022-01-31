@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.poslovnaInformatika.banka.enums.TipKlijenta;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,26 +27,28 @@ public class Klijent {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private long id;
-	@Column(name = "naziv")
-	private String naziv;
+
 	@Column(name = "ime")
 	private String ime;
+	
 	@Column(name = "prezime")
 	private String prezime;
+	
 	@Column(name = "email")
 	private String email;
+	
 	@Column(name = "adresa")
 	private String adresa;
+	
 	@Column(name = "telefon")
 	private String telefon;
+	
 	@Column(name = "jmbg")
 	private String jmbg;
-	@Column(name = "pib")
-	private String pib;
+
 	@Column(name = "fizickoLice")
-	private boolean fizickoLice;
+	private TipKlijenta fizickoLice;
 	
 	@OneToMany(mappedBy = "klijent")
 	private Set<Racun> racuni = new HashSet<Racun>();

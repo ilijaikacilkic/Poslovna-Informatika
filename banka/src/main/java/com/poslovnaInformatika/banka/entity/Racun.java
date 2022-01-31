@@ -33,8 +33,12 @@ public class Racun {
 	private double rezevisanIznos;
 	@Column(name = "datumKreiranja")
 	private Date datumKreiranja;
+	@Column(name = "odobren")
+	private Boolean odobren;
+	@Column( name = "aktivan")
+	private Boolean aktivan;
 	
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Banka banka;
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Klijent klijent;
