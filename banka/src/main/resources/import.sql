@@ -45,6 +45,7 @@ SWIFT:	SABRRSBG
 */
 
 
+
 insert into klijent (id, adresa, email, fizicko_lice, ime, jmbg, prezime, telefon, delatnost_id) values (1,"Zeleznicka 12","user@gmail.com",0,"Zeljko","1111111111111","Zeljkovic","0648452981",5);
 insert into klijent (id, adresa, email, fizicko_lice, ime, jmbg, prezime, telefon, delatnost_id) values (2,"Klisa 01","user@gmail.com",1,"Petar","2222222222222","Petrovic","0649269999",4);
 insert into klijent (id, adresa, email, fizicko_lice, ime, jmbg, prezime, telefon, delatnost_id) values (3,"Savska 06","user@gmail.com",0,"Mirko","3333333333333","Zeljkovic","0648452252",5);
@@ -57,3 +58,6 @@ insert into racun (id, aktivan, broj_racuna, datum_kreiranja, rezevisan_iznos, s
 insert into racun (id, aktivan, broj_racuna, datum_kreiranja, rezevisan_iznos, stanje_racuna, banka_id, klijent_id, valuta_id, odobren) values (3,true,"840-7440544260342-CC","2022-01-21",0,0,4,3,1,true);
 insert into racun (id, aktivan, broj_racuna, datum_kreiranja, rezevisan_iznos, stanje_racuna, banka_id, klijent_id, valuta_id, odobren) values (4,true,"780-4860276123465-CC","2022-01-21",0,0,5,4,1,true);
 insert into racun (id, aktivan, broj_racuna, datum_kreiranja, rezevisan_iznos, stanje_racuna, banka_id, klijent_id, valuta_id, odobren) values (5,true,"160-7946603057135-CC","2022-01-21",0,0,1,5,1,true);
+
+insert into transakcija (id, datum, duznik, hitno, iznos, model_duznika, model_primaoca, poziv_na_broj_duznika, poziv_na_broj_primaoca, primalac, sifra_placanja, svrha_placanja, racun_duznika_id, racun_primaoca_id, valuta_id) values (1, "2022-01-21", "Ilija", false, "1000", "15545", "151551", "151511", "15151515", "Marko", "1554", "dugovanje", 1, 2, 2);
+

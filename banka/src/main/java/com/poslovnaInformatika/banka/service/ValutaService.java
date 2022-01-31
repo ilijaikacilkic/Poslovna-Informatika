@@ -39,6 +39,19 @@ public class ValutaService {
 		return valutaRepository.save(valuta);
 	}
 	
+	public ValutaDTO getValutaDTO(Valuta valuta) {
+		ValutaDTO valutaDTO = new ValutaDTO(valuta);
+		return valutaDTO;
+	}
+	
+	public List<ValutaDTO> getValuteDTO(List<Valuta> valute){
+		List<ValutaDTO> valuteDTO = new ArrayList<ValutaDTO>();
+		for(Valuta valuta : valute) {
+			ValutaDTO valutaDTO = new ValutaDTO(valuta);			
+			valuteDTO.add(valutaDTO);
+		}
+		return valuteDTO;
+	}
 	public List<ValutaDTO> getAllDTOs(List<Valuta> valute) {
 		List<ValutaDTO> dtos = new ArrayList<>();
 		for (Valuta valuta : valute) {
@@ -48,13 +61,6 @@ public class ValutaService {
 			dtos.add(dto);
 		}
 		return dtos;
-	}
-	
-	public ValutaDTO getValutaDTO(Valuta valuta) {
-		ValutaDTO dto = new ValutaDTO(valuta);
-		dto.setRacuniListFromSet(valuta.getRacuni());		
-		dto.setTransakcijeListFromSet(valuta.getTransakcije());
-		return dto;
 	}
 
 	

@@ -4,7 +4,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import com.poslovnaInformatika.banka.dto.DelatnostDTO;
+import com.poslovnaInformatika.banka.dto.TransakcijaDTO;
 import com.poslovnaInformatika.banka.entity.Delatnost;
+import com.poslovnaInformatika.banka.entity.Transakcija;
 import com.poslovnaInformatika.banka.repository.DelatnostRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -46,9 +48,18 @@ public class DelatnostService {
 	}
 
 	public DelatnostDTO getDelatnostDTO(Delatnost delatnost) {
-		DelatnostDTO dto = new DelatnostDTO(delatnost);
-		dto.setKlijentiListFromSet(delatnost.getKlijenti());
-		return dto;
+		DelatnostDTO delatnostDTO = new DelatnostDTO(delatnost);
+		return delatnostDTO;
+	}
+	
+
+	public List<DelatnostDTO> getDelatnostiDTO(List<Delatnost> delatnosti){
+		List<DelatnostDTO> delatnostiDTO = new ArrayList<DelatnostDTO>();
+		for(Delatnost delatnost : delatnosti) {
+			DelatnostDTO delatnostDTO = new DelatnostDTO(delatnost);			
+			delatnostiDTO.add(delatnostDTO);
+		}
+		return delatnostiDTO;
 	}
 
 }

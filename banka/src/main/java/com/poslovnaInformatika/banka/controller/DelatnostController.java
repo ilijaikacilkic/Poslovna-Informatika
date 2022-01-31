@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poslovnaInformatika.banka.dto.DelatnostDTO;
+import com.poslovnaInformatika.banka.dto.ValutaDTO;
 import com.poslovnaInformatika.banka.entity.Delatnost;
 import com.poslovnaInformatika.banka.service.DelatnostService;
 
@@ -23,22 +24,25 @@ public class DelatnostController {
 	private final DelatnostService delatnostService;
 
 	@RequestMapping(value = "/delatnosti")
-	public ResponseEntity<List<Delatnost>> getAll() {
+	public ResponseEntity<List<DelatnostDTO>> getAll() {
 		List<Delatnost> delatnosti = delatnostService.getDelatnosti();
+		
+		List<DelatnostDTO> delatnostiDTO = delatnostService.getDelatnostiDTO(delatnosti);
 
-		return new ResponseEntity<List<Delatnost>>(delatnosti, HttpStatus.OK);
+		return new ResponseEntity<List<DelatnostDTO>>(delatnostiDTO, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delatnost/{id}")
-	public ResponseEntity<Delatnost> getOne(@PathVariable Long id) {
+	public ResponseEntity<DelatnostDTO> getOne(@PathVariable Long id) {
 
 		Delatnost delatnost = delatnostService.getDelatnostById(id);
 
 		if (delatnost == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
+		DelatnostDTO delatnostDTO = delatnostService.getDelatnostDTO(delatnost);
 
-		return new ResponseEntity<Delatnost>(delatnost, HttpStatus.OK);
+		return new ResponseEntity<DelatnostDTO>(delatnostDTO, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", value = "/addDelatnost")

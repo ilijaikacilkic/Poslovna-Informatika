@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +34,7 @@ public class Valuta {
 	private String drzava;	
 	
 	
-	@OneToMany(mappedBy = "valuta")
+	@OneToMany(mappedBy = "valuta")	
 	private Set<Racun> racuni = new HashSet<Racun>();
 	
 	@OneToMany(mappedBy = "valuta")

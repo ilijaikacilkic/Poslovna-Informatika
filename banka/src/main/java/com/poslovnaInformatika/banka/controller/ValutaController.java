@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poslovnaInformatika.banka.dto.TransakcijaDTO;
 import com.poslovnaInformatika.banka.dto.ValutaDTO;
 import com.poslovnaInformatika.banka.entity.Valuta;
 import com.poslovnaInformatika.banka.service.ValutaService;
@@ -23,22 +24,25 @@ public class ValutaController {
 	private final ValutaService valutaService;
 
 	@RequestMapping(value = "/valute")
-	public ResponseEntity<List<Valuta>> getAll() {
+	public ResponseEntity<List<ValutaDTO>> getAll() {
 		List<Valuta> valute = valutaService.getValute();
+		
+		List<ValutaDTO> valuteDTO = valutaService.getValuteDTO(valute);
 
-		return new ResponseEntity<List<Valuta>>(valute, HttpStatus.OK);
+		return new ResponseEntity<List<ValutaDTO>>(valuteDTO, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/valuta/{id}")
-	public ResponseEntity<Valuta> getOne(@PathVariable Long id) {
+	public ResponseEntity<ValutaDTO> getOne(@PathVariable Long id) {
 
 		Valuta valuta = valutaService.getValutaById(id);
 
 		if (valuta == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
+		ValutaDTO valutaDTO = valutaService.getValutaDTO(valuta);
 
-		return new ResponseEntity<Valuta>(valuta, HttpStatus.OK);
+		return new ResponseEntity<ValutaDTO>(valutaDTO, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", value = "/addValuta")
