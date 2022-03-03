@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,14 +20,16 @@ import lombok.RequiredArgsConstructor;
 
 @RestController	
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class BankaController {
 
 	
 	private final BankaService bankaService;
 
 
-
+	
 	@RequestMapping(value = "/banke")
+	@CrossOrigin("*")
 	public ResponseEntity<List<BankaDTO>> getAll(){
 		List<Banka> banke = bankaService.getBanke();
 		
@@ -36,6 +39,7 @@ public class BankaController {
 	}
 	
 	@RequestMapping(value = "/banka/{id}")
+	@CrossOrigin("*")
 	public ResponseEntity<BankaDTO> getOne(@PathVariable Long id){
 		
 		Banka banka = bankaService.getBankaById(id);
@@ -50,6 +54,7 @@ public class BankaController {
 	}
 
 	@PostMapping("/addBanka")
+	@CrossOrigin("*")
 	public ResponseEntity<BankaDTO> addBanka(@RequestBody BankaDTO bankaDTO) {
 		Banka banka = new Banka();
 		
