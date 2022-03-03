@@ -2,9 +2,9 @@
 header{
     min-height: 60px;
     max-height: 90px;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
-    border-radius: 0px 0px 15px 15px;
+    /* border-radius: 0px 0px 15px 15px; */
     background: rgb(193,200,208);
     background: linear-gradient(90deg, rgba(193,200,208,1) 0%, rgba(71,137,203,1) 70%);
     display: flex;
