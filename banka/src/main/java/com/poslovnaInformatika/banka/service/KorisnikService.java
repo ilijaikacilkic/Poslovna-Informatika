@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.poslovnaInformatika.banka.entity.Klijent;
 import com.poslovnaInformatika.banka.entity.Korisnik;
 import com.poslovnaInformatika.banka.repository.KorisnikRepository;
 
@@ -22,6 +23,10 @@ public class KorisnikService implements UserDetailsService  {
 		} else {
 			return korisnik;
 		}
+	}
+	
+	public Korisnik saveKorisnik(Korisnik korisnik) {
+		return korisnikRepository.save(korisnik);
 	}
 
 }

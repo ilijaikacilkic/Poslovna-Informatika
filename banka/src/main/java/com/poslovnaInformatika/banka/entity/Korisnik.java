@@ -5,6 +5,8 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,19 +20,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "korisnici")
 @Getter
+@Setter
 public class Korisnik implements UserDetails {
 
-	@Id
+	@Id	
 	@Column(name = "username", unique = true, nullable = false)
-	@NotEmpty(message = "{validation.username.NotEmpty}")
+//	@NotEmpty(message = "{validation.username.NotEmpty}")
 	private String username;
 	
 	@Column(name = "password", nullable = false)
-	@NotEmpty(message = "{validation.password.NotEmpty}")
+//	@NotEmpty(message = "{validation.password.NotEmpty}")
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
