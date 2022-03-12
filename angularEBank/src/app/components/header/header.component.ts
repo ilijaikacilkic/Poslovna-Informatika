@@ -18,4 +18,8 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['login']);
   }
 
+  redirectToRegistracija(){
+    this.route.navigate(['registracija']);
+  }
+
 }

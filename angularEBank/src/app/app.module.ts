@@ -9,13 +9,15 @@ import { LoginComponent } from './components/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BankaComponent } from './components/banka/banka.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    BankaComponent
+    BankaComponent,
+    RegistracijaComponent
         
   ],
   imports: [
