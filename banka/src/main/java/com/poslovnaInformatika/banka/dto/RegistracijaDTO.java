@@ -1,5 +1,6 @@
 package com.poslovnaInformatika.banka.dto;
 
+import com.poslovnaInformatika.banka.entity.Delatnost;
 import com.poslovnaInformatika.banka.entity.Klijent;
 import com.poslovnaInformatika.banka.enums.TipKlijenta;
 
@@ -20,7 +21,7 @@ public class RegistracijaDTO {
 	private String telefon;
 	private String jmbg;
 	private TipKlijenta fizickoLice;
-	
+	private Delatnost delatnost;
 	private String username;
 	private String password;
 	
@@ -36,9 +37,11 @@ public class RegistracijaDTO {
 		this.telefon = klijent.getTelefon();
 		this.jmbg = klijent.getJmbg();
 		this.fizickoLice = klijent.getFizickoLice();
-		
+		this.delatnost = klijent.getDelatnost();
 		this.username = korisnik.getUsername();
 		this.password = korisnik.getPassword();
 	}
+
+
 
 }

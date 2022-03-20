@@ -27,7 +27,7 @@ public class Klijent {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "ime")
 	private String ime;
@@ -59,6 +59,8 @@ public class Klijent {
 	public Klijent() {
 		super();
 	}
+
+	
 
 	
 	
