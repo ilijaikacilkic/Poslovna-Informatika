@@ -1,0 +1,46 @@
+
+header{
+    min-height: 60px;
+    max-height: 90px;
+    width: 100%;
+    margin: 0 auto;
+    /* border-radius: 0px 0px 15px 15px; */
+    background: rgb(193,200,208);
+    background: linear-gradient(90deg, rgba(193,200,208,1) 0%, rgba(71,137,203,1) 70%);
+    display: flex;
+    align-items: center;
+}
+nav{
+    width: 95%;
+    margin: auto;
+}
+
+.logo{
+    text-decoration: none;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 18px;
+    background: -webkit-linear-gradient(90deg,#79a9d9, #1668ba);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+}
+
+.loginRegistracija{
+    float:right;
+    font-size: 15px;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    width: 100px;
+    height: 25px;
+    color: #4789cb;
+    background: rgb(242,244,246);
+    background: linear-gradient(104deg, rgba(242,244,246,1) 0%, rgba(177,207,237,1) 84%);
+    cursor: pointer;
+
+}
+.reverseBorderRadius{
+    border-radius: 10px 0 0 10px;
+    background: rgb(242,244,246);
+    background: linear-gradient(104deg, rgba(177,207,237,1)0%, rgba(242,244,246,1)  84%);
+}

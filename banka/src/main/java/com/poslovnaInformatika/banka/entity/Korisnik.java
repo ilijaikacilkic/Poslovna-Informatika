@@ -11,26 +11,29 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.poslovnaInformatika.banka.dto.KlijentDTO;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "korisnici")
 @Getter
+@Setter
 public class Korisnik implements UserDetails {
 
-	@Id
+	@Id	
 	@Column(name = "username", unique = true, nullable = false)
-	@NotEmpty(message = "{validation.username.NotEmpty}")
+//	@NotEmpty(message = "{validation.username.NotEmpty}")
 	private String username;
 	
 	@Column(name = "password", nullable = false)
-	@NotEmpty(message = "{validation.password.NotEmpty}")
+//	@NotEmpty(message = "{validation.password.NotEmpty}")
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -39,7 +42,7 @@ public class Korisnik implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
 	private Collection<Authority> authorities;
 	
-	@OneToOne
+	@OneToOne	
 	private Klijent klijent;
 
 	public Korisnik() {}
@@ -48,6 +51,12 @@ public class Korisnik implements UserDetails {
 		this.username = username;
 		this.password = password;		
 		this.authorities = authorities;
+		this.klijent = klijent;
+	}
+	
+	public Korisnik(String username, String password, Klijent klijent) {
+		this.username = username;
+		this.password = password;		
 		this.klijent = klijent;
 	}
 
@@ -75,5 +84,12 @@ public class Korisnik implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+//	public void setKlijent(KlijentDTO klijent2) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+	
 
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class KlijentDTO {
 	
-	private long id;
+	private Long id;
 	private String ime;
 	private String prezime;
 	private String email;
@@ -24,7 +24,7 @@ public class KlijentDTO {
 	public KlijentDTO() {}
 
 	public KlijentDTO(Klijent obj) {
-		super();
+		
 		this.id = obj.getId();
 		this.ime = obj.getIme();
 		this.prezime = obj.getPrezime();
@@ -34,6 +34,6 @@ public class KlijentDTO {
 		this.jmbg = obj.getJmbg();
 		this.fizickoLice = obj.getFizickoLice();
 	}
-	
+
 
 }
